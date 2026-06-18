@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ежедневные траты" Height="450" Width="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Пн:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="Monday" Margin="5"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Вт:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="Tuesday" Margin="5"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ср:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="Wednesday" Margin="5"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Чт:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="Thursday" Margin="5"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Пт:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="Friday" Margin="5"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Сб:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="Saturday" Margin="5"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Вс:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="Sunday" Margin="5"/>
+
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Name="CalculateButton" Content="Посчитать" Width="100" Height="30" Click="CalculateButton_Click" Margin="5"/>
+            <Button Name="ClearButton" Content="Очистить всё" Width="100" Height="30" Click="ClearButton_Click" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Margin="5">
+            <TextBlock Name="TotalResult" Text="Общая сумма: 0" Margin="5"/>
+            <TextBlock Name="AverageResult" Text="Средний расход: 0" Margin="5"/>
+            <TextBlock Name="MaxResult" Text="Максимальный расход: 0" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
