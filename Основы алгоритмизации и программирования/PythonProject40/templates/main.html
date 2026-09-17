@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-number">{{ total }}</div>
+        <div class="stat-label">Всего</div>
+    </div>
+    <div class="stat-card done">
+        <div class="stat-number">{{ done_count }}</div>
+        <div class="stat-label">Выполнено</div>
+    </div>
+    <div class="stat-card undone">
+        <div class="stat-number">{{ undone_count }}</div>
+        <div class="stat-label">Не выполнено</div>
+    </div>
+</div>
+
+<form class="filters" method="get">
+    <div class="filter-group">
+        <label>Категория:</label>
+        <select name="category">
+            <option value="">Все</option>
+            {% for c in categories %}
+                <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>{{ c }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label>Сортировка:</label>
+        <select name="sort">
+            <option value="">По умолчанию</option>
+            <option value="done" {% if current_sort == 'done' %}selected{% endif %}>Сначала выполненные</option>
+            <option value="undone" {% if current_sort == 'undone' %}selected{% endif %}>Сначала невыполненные</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Применить</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Сбросить</a>
+</form>
+
+<div class="tasks">
+    {% for task in tasks %}
+        <div class="task {% if task.done %}task-done{% endif %}">
+            <div class="task-header">
+                <span class="category-badge">{{ task.category }}</span>
+                <a href="{{ url_for('toggle_task', id=task.id) }}"
+                   class="toggle {% if task.done %}checked{% endif %}">
+                    {% if task.done %}✓{% else %}○{% endif %}
+                </a>
+            </div>
+            <h3>{{ task.title }}</h3>
+            {% if task.description %}
+                <p class="task-desc">{{ task.description }}</p>
+            {% endif %}
+            <div class="task-actions">
+                <a href="{{ url_for('task', id=task.id) }}">Просмотр</a>
+                <a href="{{ url_for('edit_task', id=task.id) }}">Изменить</a>
+                <a href="{{ url_for('delete_task', id=task.id) }}" class="danger">Удалить</a>
+            </div>
+        </div>
+    {% else %}
+        <p class="empty">Задач пока нет. <a href="{{ url_for('add') }}">Добавьте первую!</a></p>
+    {% endfor %}
+</div>
+
+{% endblock %}

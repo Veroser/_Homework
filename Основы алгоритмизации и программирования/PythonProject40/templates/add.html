@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Добавление задачи{% endblock %}
+
+{% block content %}
+<h1>Новая задача</h1>
+<form method="post" class="form">
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+        {{ form.title.label }}
+        {{ form.title(class="input") }}
+    </div>
+
+    <div class="field">
+        {{ form.description.label }}
+        {{ form.description(class="input", rows="4") }}
+    </div>
+
+    <div class="field">
+        {{ form.category.label }}
+        {{ form.category(class="input") }}
+    </div>
+
+    <div class="field checkbox">
+        {{ form.done() }} {{ form.done.label }}
+    </div>
+
+    <div class="field">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}

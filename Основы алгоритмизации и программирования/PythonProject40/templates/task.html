@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="task-detail {% if task.done %}task-done{% endif %}">
+    <span class="category-badge">{{ task.category }}</span>
+    <h1>{{ task.title }}</h1>
+    <p class="status">
+        Статус:
+        {% if task.done %}
+            <strong class="done-text">Выполнено ✓</strong>
+        {% else %}
+            <strong class="undone-text">Не выполнено</strong>
+        {% endif %}
+    </p>
+    {% if task.description %}
+        <p class="task-desc">{{ task.description }}</p>
+    {% endif %}
+
+    <div class="task-actions">
+        <a href="{{ url_for('index') }}">Назад</a>
+        <a href="{{ url_for('toggle_task', id=task.id) }}">Переключить статус</a>
+        <a href="{{ url_for('edit_task', id=task.id) }}">Изменить</a>
+        <a href="{{ url_for('delete_task', id=task.id) }}" class="danger">Удалить</a>
+    </div>
+</div>
+{% endblock %}
