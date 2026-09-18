@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block header %}
+    <a href="/?day=mon" class="btn {% if day == 'mon' %}active{% endif %}">Понедельник</a>
+    <a href="/?day=tue" class="btn {% if day == 'tue' %}active{% endif %}">Вторник</a>
+    <a href="/?day=wed" class="btn {% if day == 'wed' %}active{% endif %}">Среда</a>
+    <a href="/?day=thu" class="btn {% if day == 'thu' %}active{% endif %}">Четверг</a>
+    <a href="/?day=fri" class="btn {% if day == 'fri' %}active{% endif %}">Пятница</a>
+{% endblock %}
+
+{% block content %}
+    <h2>Расписание на {{ days_ru[day] }}</h2>
+
+    {% if lessons %}
+        <ul class="schedule-list">
+        {% for lesson in lessons %}
+            <li>
+                <strong>{{ lesson.time }}</strong> — {{ lesson.subject }}
+                <span class="room">(ауд. {{ lesson.room }})</span>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>На этот день занятий нет</p>
+    {% endif %}
+{% endblock %}

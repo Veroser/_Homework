@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Расписание на неделю</h1>
+
+    <div id="header">
+        {% block header %}{% endblock %}
+    </div>
+
+    {% block content %}{% endblock %}
+
+
+</body>
+</html>
