@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Расписание — {{ group }}{% endblock %}
+{% block body %}
+<div class="wrapper">
+
+    <div class="topbar">
+        <div class="topbar-info">
+            <div><strong>{{ user.username }}</strong></div>
+            <div>Группа: <strong>{{ user.group }}</strong></div>
+        </div>
+        <form method="POST" action="{{ url_for('logout') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="btn-small">Выйти</button>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <h2 class="schedule-title">Расписание группы {{ group }}</h2>
+
+    {% if schedule %}
+        {% for day in schedule %}
+        <div class="day-card">
+            <div class="day-name">{{ day.day }}</div>
+            {% if day.lessons %}
+                {% for lesson in day.lessons %}
+                <div class="lesson">
+                    <div class="lesson-time">{{ lesson.time }}</div>
+                    <div class="lesson-subject">{{ lesson.subject }}</div>
+                    <div class="lesson-meta">{{ lesson.teacher }} · ауд. {{ lesson.room }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty">Занятий нет</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="day-card">
+            <div class="empty">Расписание для вашей группы пока не добавлено</div>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

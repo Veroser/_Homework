@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Вход — Расписание колледжа{% endblock %}
+{% block content %}
+<h1>Вход</h1>
+<p class="subtitle">Войдите в аккаунт студента</p>
+
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+        {{ form.username.label }}
+        {{ form.username(placeholder="username") }}
+        {% if form.username.errors %}
+        <div class="errors"><ul>{% for e in form.username.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.password.label }}
+        {{ form.password(placeholder="Ваш пароль") }}
+        {% if form.password.errors %}
+        <div class="errors"><ul>{% for e in form.password.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    {{ form.submit(class="btn") }}
+</form>
+
+<a class="link" href="{{ url_for('register') }}">Нет аккаунта? Зарегистрироваться</a>
+{% endblock %}
