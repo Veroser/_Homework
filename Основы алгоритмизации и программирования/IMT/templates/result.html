@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Результат расчёта</h1>
+<p class="subtitle">Ваш индекс массы тела</p>
+
+<div style="text-align:center; margin: 24px 0;">
+    <div style="font-size: 56px; font-weight: 700; color: #667eea; line-height: 1;">
+        {{ bmi }}
+    </div>
+    <div style="margin-top: 16px; display: inline-block; padding: 8px 20px; border-radius: 999px; background: #eef0ff; color: #4a4a6a; font-weight: 600; font-size: 15px;">
+        Категория: {{ category }}
+    </div>
+</div>
+
+<div style="border-top: 1px solid #eee; padding-top: 16px; margin-top: 8px; font-size: 14px; color: #6a6a85;">
+    <div style="display:flex; justify-content:space-between; padding: 4px 0;">
+        <span>Вес</span><span>{{ weight }} кг</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; padding: 4px 0;">
+        <span>Рост</span><span>{{ height }} см</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; padding: 4px 0;">
+        <span>Возраст</span><span>{{ age }}</span>
+    </div>
+</div>
+
+<a class="link-back" href="{{ url_for('index') }}">← Рассчитать ещё раз</a>
+{% endblock %}

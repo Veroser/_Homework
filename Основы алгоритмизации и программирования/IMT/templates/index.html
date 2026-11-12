@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Калькулятор ИМТ</h1>
+<p class="subtitle">Узнайте свой индекс массы тела</p>
+
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+        {{ form.weight.label }}
+        {{ form.weight(type="number", step="0.1", placeholder="Например, 70.5") }}
+        {% if form.weight.errors %}
+        <div class="errors">
+            <ul>
+                {% for error in form.weight.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.height.label }}
+        {{ form.height(type="number", placeholder="Например, 175") }}
+        {% if form.height.errors %}
+        <div class="errors">
+            <ul>
+                {% for error in form.height.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.age.label }}
+        {{ form.age(type="number", placeholder="Например, 30") }}
+        {% if form.age.errors %}
+        <div class="errors">
+            <ul>
+                {% for error in form.age.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    {{ form.submit(class="btn") }}
+</form>
+{% endblock %}
