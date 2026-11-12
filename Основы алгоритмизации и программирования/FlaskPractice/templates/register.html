@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+<h1>Регистрация</h1>
+<p class="subtitle">Создайте новый аккаунт</p>
+
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="field">
+        {{ form.username.label }}
+        {{ form.username(placeholder="username") }}
+        {% if form.username.errors %}
+        <div class="errors"><ul>{% for e in form.username.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.email.label }}
+        {{ form.email(placeholder="you@example.com") }}
+        {% if form.email.errors %}
+        <div class="errors"><ul>{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.password.label }}
+        {{ form.password(placeholder="Минимум 6 символов") }}
+        {% if form.password.errors %}
+        <div class="errors"><ul>{% for e in form.password.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    <div class="field">
+        {{ form.confirm.label }}
+        {{ form.confirm(placeholder="Повторите пароль") }}
+        {% if form.confirm.errors %}
+        <div class="errors"><ul>{% for e in form.confirm.errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+        {% endif %}
+    </div>
+
+    {{ form.submit(class="btn") }}
+</form>
+
+<a class="link" href="{{ url_for('login') }}">Уже есть аккаунт? Войти</a>
+{% endblock %}
